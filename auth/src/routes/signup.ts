@@ -1,7 +1,8 @@
 import express, {Router, Request, Response} from 'express'
 import {body, validationResult} from 'express-validator'
-import {DatabeseConnectionError} from '../errors/database-connection-error'
+import {User} from '../models/user'
 import {RequestValidationError} from '../errors/request-validation-error'
+import {BadRequestError} from '../errors/bad-request-error'
 
 const router = Router()
 
@@ -24,10 +25,16 @@ async (req: Request, res: Response) => {
 
     const {email, password} = req.body
 
-    console.log('Creating a user..')
-    throw new DatabeseConnectionError()
+    const existingUser = await User.findOne({email})
 
-    res.send({})
+    if(existingUser){
+        throw new BadRequestError('Email in use')
+    }
+
+    const user = User.build({email, password})
+    await user.save()
+
+    res.status(201).send(user)
 })
 
 
