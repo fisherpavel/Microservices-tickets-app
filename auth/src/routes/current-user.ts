@@ -1,8 +1,8 @@
-import {Router} from 'express'
+import express from 'express'
 
 import {currentUser} from '../middleware/current-user'
 
-const router = Router()
+const router = express.Router()
 
 router.get('/api/users/currentuser', currentUser, (req, res) => {
      res.send({currentUser: req.currentUser || null})     

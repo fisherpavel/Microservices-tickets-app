@@ -1,4 +1,4 @@
-import  {Router, Request, Response} from 'express'
+import  express, {Request, Response} from 'express'
 import {body} from 'express-validator'
 import jwt from 'jsonwebtoken'
 
@@ -7,7 +7,7 @@ import {User} from '../models/user'
 import {validateRequest} from '../middleware/validate-request'
 import {BadRequestError} from '../errors/bad-request-error'
 
-const router = Router()
+const router = express.Router()
 
 
 router.post('/api/users/signin', 

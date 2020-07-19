@@ -1,6 +1,6 @@
-import express, {Router} from 'express'
+import express from 'express'
 
-const router = Router()
+const router = express.Router()
 
 
 router.post('/api/users/signout', (req, res) => {
