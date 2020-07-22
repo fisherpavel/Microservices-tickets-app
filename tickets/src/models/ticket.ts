@@ -1,6 +1,5 @@
 import mongoose from 'mongoose'
 
-
 interface TicketAttrs {
     title: string
     price: number
