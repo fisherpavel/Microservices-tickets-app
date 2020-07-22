@@ -13,9 +13,11 @@ spec:
         app: tickets
     spec:
       containers:
-        - name: authtickets
+        - name: tickets
           image: fisherpavel/tickets
           env: 
+            - name: MONGO_URI
+              value: 'mongodb://tickets-mongo-srv:27017/tickets'
             - name: JWT_KEY
               valueFrom:
                 secretKeyRef:
